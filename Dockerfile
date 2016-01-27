@@ -13,7 +13,7 @@ RUN echo 'deb http://download.jitsi.org/nightly/deb unstable/' >> /etc/apt/sourc
   chown prosody /var/run/prosody && \
   touch /root/.first-boot
 
-EXPOSE 80 443 5347
+EXPOSE 80 443
 EXPOSE 10000-20000/udp
 
 COPY config /root/samples
@@ -26,4 +26,4 @@ ENV YOURSECRET3 hipchat
 
 VOLUME /var/lib/prosody/
 
-CMD ./run.sh
+ENTRYPOINT ./run.sh

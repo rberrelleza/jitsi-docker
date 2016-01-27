@@ -1,5 +1,4 @@
-LOG=/var/log/jitsi/jvb.log
-
+# !/bin/bash
 
 if [ -f /root/.first-boot ]; then
   cp /root/samples/prosody.cfg.lua /etc/prosody/conf.avail/$DOMAIN.cfg.lua
@@ -36,12 +35,14 @@ if [ -f /root/.first-boot ]; then
   cp /root/samples/config.js /etc/jitsi/meet/$DOMAIN-config.js
   sed -i "s/jitsi.example.com/$DOMAIN/g" /etc/jitsi/meet/$DOMAIN-config.js
 
+  echo "127.0.0.1   $DOMAIN" >> /etc/hosts
+
   rm /root/.first-boot
 fi
 
 prosodyctl restart
 /etc/init.d/jitsi-videobridge start
 /etc/init.d/jicofo start
-/etc/init.d/nginx start
+service nginx restart
 
 tail -f /var/log/jitsi/jvb.log

@@ -4,6 +4,7 @@ MAINTAINER rberrelleza@atlassian.com
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN echo 'deb http://download.jitsi.org/nightly/deb unstable/' >> /etc/apt/sources.list && \
+  apt-get update -y && \
   apt-get install -y wget && \
   wget -qO - https://download.jitsi.org/nightly/deb/unstable/archive.key | apt-key add - && \
   apt-get update && \

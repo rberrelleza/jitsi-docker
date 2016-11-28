@@ -1,8 +1,8 @@
 VirtualHost "jitsi.example.com"
     authentication = "anonymous"
     ssl = {
-        key = "/var/lib/prosody/jitsi.example.com.key";
-        certificate = "/var/lib/prosody/jitsi.example.com.crt";
+        key = "/keys/jitsi.example.com.key";
+        certificate = "/keys/jitsi.example.com.crt";
     }
     modules_enabled = {
         "bosh";

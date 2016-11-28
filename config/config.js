@@ -22,7 +22,7 @@ var config = {
     desktopSharingSources: ['screen', 'window'],
     minChromeExtVersion: '0.1.3', // Required version of Chrome extension
     desktopSharingFirefoxExtId: "",
-    desktopSharingFirefoxDisabled: false,
+    desktopSharingFirefoxDisabled: true,
     desktopSharingFirefoxMaxVersionExtRequired: 0,
     desktopSharingFirefoxExtensionURL: "",
     useRoomAsSharedDocumentName: false,

@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER rberrelleza@atlassian.com
+MAINTAINER rberrelleza@gmail.com
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -13,7 +13,9 @@ RUN echo 'deb http://download.jitsi.org/nightly/deb unstable/' >> /etc/apt/sourc
   mkdir /root/samples && \
   mkdir /var/run/prosody && \
   chown prosody /var/run/prosody && \
-  touch /root/.first-boot
+  touch /root/.first-boot && \
+  mkdir /keys && \
+  mkdir /recordings
 
 EXPOSE 80 443
 EXPOSE 10000-20000/udp
@@ -21,12 +23,12 @@ EXPOSE 10000-20000/udp
 COPY config /root/samples
 COPY run.sh run.sh
 
-ENV DOMAIN hipchat-video.example.com
-ENV YOURSECRET1 hipchat
-ENV YOURSECRET2 hipchat
-ENV YOURSECRET3 hipchat
+ENV DOMAIN jitsi.example.com
+ENV YOURSECRET1 jitsi
+ENV YOURSECRET2 jitsi
+ENV YOURSECRET3 jitsi
 
-VOLUME /var/lib/prosody/
-VOLUME /root/recordings
+VOLUME /keys
+VOLUME /recordings
 
 ENTRYPOINT ./run.sh

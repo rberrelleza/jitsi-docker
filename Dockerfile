@@ -27,5 +27,6 @@ ENV YOURSECRET2 hipchat
 ENV YOURSECRET3 hipchat
 
 VOLUME /var/lib/prosody/
+VOLUME /root/recordings
 
 ENTRYPOINT ./run.sh

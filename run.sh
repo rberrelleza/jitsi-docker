@@ -1,6 +1,10 @@
 # !/bin/bash
 
 if [ -f /root/.first-boot ]; then
+  
+  mkdir /root/.sip-communicator
+  cp /root/samples/sip-communicator.properties /root/.sip-communicator/sip-communicator.properties
+
   cp /root/samples/prosody.cfg.lua /etc/prosody/conf.avail/$DOMAIN.cfg.lua
   sed -i "s/jitsi.example.com/$DOMAIN/g" /etc/prosody/conf.avail/$DOMAIN.cfg.lua
   sed -i "s/YOURSECRET1/$YOURSECRET1/g" /etc/prosody/conf.avail/$DOMAIN.cfg.lua

@@ -1,5 +1,7 @@
 # !/bin/bash
 
+set -e
+
 if [ -f /root/.first-boot ]; then
   cp /root/samples/prosody.cfg.lua /etc/prosody/conf.avail/$DOMAIN.cfg.lua
   sed -i "s/jitsi.example.com/$DOMAIN/g" /etc/prosody/conf.avail/$DOMAIN.cfg.lua
@@ -11,7 +13,7 @@ if [ -f /root/.first-boot ]; then
   # This could be overriden via a volume
   if [ ! -f /var/lib/prosody/$DOMAIN.key ]; then
     echo 'Generating a self signed certificate'
-    openssl req -new -x509 -days 365 -nodes -subj "/C=US/ST=CA/L=San Francisco/O=Hipchat/CN=$DOMAIN" -out "/var/lib/prosody/$DOMAIN.crt" -newkey rsa:2048 -keyout "/var/lib/prosody/$DOMAIN.key"
+    openssl req -new -x509 -days 365 -nodes -subj "/C=US/ST=CA/L=San Francisco/O=Jitsi/CN=$DOMAIN" -out "/var/lib/prosody/$DOMAIN.crt" -newkey rsa:2048 -keyout "/var/lib/prosody/$DOMAIN.key"
   fi
 
   prosodyctl register focus auth.$DOMAIN $YOURSECRET3
@@ -43,6 +45,8 @@ fi
 prosodyctl restart
 /etc/init.d/jitsi-videobridge start
 /etc/init.d/jicofo start
+
+service nginx configtest
 service nginx restart
 
 tail -f /var/log/jitsi/jvb.log
